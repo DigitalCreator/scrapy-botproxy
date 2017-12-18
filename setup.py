@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*
-__author__ = '%s%s@botproxy.net' % ('sup', 'port')
+from setuptools import setup
+from codecs import open
+from os import path
 
-from distutils.core import setup
-
-with open('README.md', 'rt') as inp:
-    long_description = inp.read()
+here = path.abspath(path.dirname(__file__))
+try:
+    import pypandoc
+    long_description = pypandoc.convert(path.join(here, 'README.md'), 'rst')
+except(IOError, ImportError):
+    with open(path.join(here, 'README.md'), encoding='utf-8') as inp:
+        long_description = inp.read()
 
 setup(
     name='scrapy-botproxy',
-    version='1.0.0',
+    version='1.0.1',
     packages=['scrapy_botproxy'],
     url='https://github.com/botproxy/scrapy-botproxy',
     license='MIT',
